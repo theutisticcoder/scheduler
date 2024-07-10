@@ -53,7 +53,7 @@
                             if (cellValue.includes("[")) {
 
 
-                                students.push(cellValue);
+                                students.push(cellValue.split("[")[1]);
                             }
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
@@ -69,9 +69,9 @@
             }; 
             Notification.requestPermission();
                     document.querySelectorAll(".time").forEach(input=> {
-                        it++;
-                            checktime((new Date().getHours().toString() + ":" + new Date().getMinutes().toString()), this.value, students[it].split("[").split("]")[1], classes[it], input);
-                    })
+                            checktime((new Date().getHours().toString() + ":" + new Date().getMinutes().toString()), this.value, students[it].split("]")[1], classes[it], input);
+                            it++;
+                        })
 
             reader.readAsArrayBuffer(file);
           
