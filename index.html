@@ -69,9 +69,7 @@
                 document.querySelectorAll("tr").forEach(ro=> {
                     it++;
                     ro.querySelectorAll("input").forEach(input=> {
-                        input.onchange = ()=> {
-                       checktime(new Date().getTime(), input.value, classes.split(",")[it], students.split(",")[it]);
-                        }
+                       checktime(new Date().getTime().toString(), input.value, students.split(",")[it], classes.split(",")[it]);
                     })
                 })
 
