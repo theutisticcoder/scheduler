@@ -11,13 +11,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
     <script>
+        var not;
         function checktime(time, val, name, clas){
             if(time <= val){
                 console.log("not ready")
                 checktime(new Date().getTime().toString(), val, name, clas);
             }
             else{
-                const not = new Notification(name + " has " + clas);
+                if(Notification.permission === "granted") not = new Notification(name + " has " + clas);
             }
         }
         var it = 0;
@@ -41,14 +42,14 @@
                             var cellValue = cell.value ? cell.value : '';
                             var cellStyle = '';
 
-                            if (cell.font && cell.font.bold) {
+                            if (cell.font && cell.font.bold && !cellValue.includes("[")) {
                                 cellStyle = 'font-weight:bold;';
-                                classes.push(cellValue +  ",") ;
+                                classes.push(cellValue) ;
                             }
                             if (cellValue.includes("[")) {
 
 
-                                students.push(cellValue +  "," );
+                                students.push(cellValue);
                             }
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
@@ -63,18 +64,15 @@
                 });
             }; 
             reader.readAsArrayBuffer(file);
-            Notification.requestPermission().then((per)=>{
-                if(per=== "granted"){
+            Notification.requestPermission()
                     document.querySelectorAll("input[type='time']").forEach(input=> {
                         it++;
                         input.onchange = ()=> {
-                            checktime(new Date().getTime().toString(), input.value, students.split(",")[it], students[it].split("[")[1].split["]"][0]);
+                            checktime(new Date().getTime().toString(), input.value, students[it].split("[")[1].split["]"][0], classes[it]);
                         }
                     })
 
-                }
-            })
-        });
+                });
     </script>
 </body>
 </html>
