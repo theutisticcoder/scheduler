@@ -70,7 +70,7 @@
                     document.getElementById('output').innerHTML = output;
                     Notification.requestPermission();
                     document.querySelectorAll(".time").forEach(input=> {
-                           cal.addEvent(classes[it] + " for " + students[it], "", "", Date.now(), "never");
+                           cal.addEvent(classes[it] + " for " + students[it], "", "", "", "", {freq: "DAILY"});
                            it++;
                         })
 
