@@ -12,12 +12,12 @@
     <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
     <script>
         var not;
-        function checktime(time, val, name, clas){
+        function checktime(time, val, name, clas, inp){
             console.log(time);
             console.log(val);
-            if(time != val){
+            if(time != val || inp.value){
                 console.log("not ready")
-                checktime(new Date().getTime().toString(), val, name, clas);
+                checktime(new Date().getHours().toString() + ":" + new Date().getMinutes().toString(), val, name, clas);
             }
             else{
                 if(Notification.permission === "granted") not = new Notification(name + " has " + clas);
@@ -69,9 +69,7 @@
             Notification.requestPermission();
                     document.querySelectorAll(".time").forEach(input=> {
                         it++;
-                        input.addEventListener("change", ()=> {
-                            checktime(new Date().getTime().toString(), this.value, students[it].split("[")[1].split["]"][0], classes[it]);
-                        })
+                            checktime((new Date().getHours().toString() + ":" + new Date().getMinutes().toString()), this.value, students[it].split("[")[1].split["]"][0], classes[it], input);
                     })
 
                 });
