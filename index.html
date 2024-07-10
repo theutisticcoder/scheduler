@@ -31,7 +31,7 @@
                         var cell_ref = XLSX.utils.encode_cell(cell_address);
                         var cell = worksheet[cell_ref];
                         var cell_value = (cell ? cell.v : '');
-                        
+                        var cell_style = '';
                         // Check for bold text
                         if(cell && cell.s && cell.s.font && cell.s.font.bold) {
                             alert("found bold!")
