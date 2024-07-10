@@ -9,44 +9,41 @@
     <input type="file" id="upload" />
     <div id="output"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.17.0/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
     <script>
         document.getElementById('upload').addEventListener('change', function(e) {
+            var file = e.target.files[0];
             var reader = new FileReader();
+
             reader.onload = function(e) {
-                var data = new Uint8Array(reader.result);
-                var workbook = XLSX.read(data, { type: 'array', cellStyles: true });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-                
-                // Get the range of the sheet
-                var range = XLSX.utils.decode_range(worksheet['!ref']);
+                var arrayBuffer = reader.result;
+                var workbook = new ExcelJS.Workbook();
 
-                // Iterate through each cell in the range
-                var output = '<table border="1">';
-                for (var R = range.s.r; R <= range.e.r; ++R) {
-                    output += '<tr>';
-                    for (var C = range.s.c; C <= range.e.c; ++C) {
-                        var cell_address = { c: C, r: R };
-                        var cell_ref = XLSX.utils.encode_cell(cell_address);
-                        var cell = worksheet[cell_ref];
-                        var cell_value = (cell ? cell.v : '');
-                        var cell_style = '';
-                        // Check for bold text
-                        if (cell && cell.s && cell.s.font && cell.s.font.bold) {
-                            cell_style = 'font-weight:bold;';
-                            alert("found bold!")
-                        }
-                        
-                        output += '<td style="' + cell_style + '">' + cell_value + '</td>';
-                    }
-                    output += '</tr>';
-                }
-                output += '</table>';
+                workbook.xlsx.load(arrayBuffer).then(function() {
+                    var worksheet = workbook.getWorksheet(1);
+                    var output = '<table border="1">';
 
-                document.getElementById('output').innerHTML = output;
+                    worksheet.eachRow({ includeEmpty: true }, function(row, rowNumber) {
+                        output += '<tr>';
+                        row.eachCell({ includeEmpty: true }, function(cell, colNumber) {
+                            var cellValue = cell.value ? cell.value : '';
+                            var cellStyle = '';
+
+                            if (cell.font && cell.font.bold) {
+                                cellStyle = 'font-weight:bold;';
+                            }
+
+                            output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
+                        });
+                        output += '</tr>';
+                    });
+
+                    output += '</table>';
+                    document.getElementById('output').innerHTML = output;
+                });
             };
-            reader.readAsArrayBuffer(e.target.files[0]);
+
+            reader.readAsArrayBuffer(file);
         });
     </script>
 </body>
