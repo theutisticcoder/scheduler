@@ -65,7 +65,7 @@
             };
             reader.readAsArrayBuffer(file);
             Notification.requestPermission().then((per)=>{
-                if(per=== granted){
+                if(per=== "granted"){
                     document.querySelectorAll("input:time").forEach(input=> {
                         it++;
                        checktime(new Date().getTime().toString(), input.value, students.split(",")[it], classes.split(",")[it]);
