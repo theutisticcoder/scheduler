@@ -12,7 +12,19 @@
     <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
     <script>
         var not;
-       
+        function checktime(time, val, name, clas, inp){
+            console.log(time);
+            console.log(val);
+            if(time != val || inp.value){
+                console.log("not ready");
+                setTimeout(()=> {
+                    checktime(new Date().getHours().toString() + ":" + new Date().getMinutes().toString(), val, name, clas);
+                }, 1000)
+            }
+            else{
+                if(Notification.permission === 'granted') not = new Notification(name + " has " + clas);
+            }
+        }
         var it = 0;
         var classes = [];
         var students = [];
@@ -64,17 +76,6 @@
             reader.readAsArrayBuffer(file);
           
                 });
-                function checktime(time, val, name, clas, inp){
-            console.log(time);
-            console.log(val);
-            if(time != val || inp.value){
-                console.log("not ready")
-                checktime(new Date().getHours().toString() + ":" + new Date().getMinutes().toString(), val, name, clas);
-            }
-            else{
-                if(Notification.permission === 'granted') not = new Notification(name + " has " + clas);
-            }
-        }
     </script>
 </body>
 </html>
