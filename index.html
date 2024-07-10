@@ -13,6 +13,8 @@
     <script>
         var not;
         function checktime(time, val, name, clas){
+            console.log(time);
+            console.log(val);
             if(time != val){
                 console.log("not ready")
                 checktime(new Date().getTime().toString(), val, name, clas);
