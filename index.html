@@ -20,7 +20,7 @@
                 checktime(new Date().getHours().toString() + ":" + new Date().getMinutes().toString(), val, name, clas);
             }
             else{
-                if(Notification.permission === "granted") not = new Notification(name + " has " + clas);
+                if(Notification.permission === 'granted') not = new Notification(name + " has " + clas);
             }
         }
         var it = 0;
@@ -65,13 +65,14 @@
                     document.getElementById('output').innerHTML = output;
                 });
             }; 
-            reader.readAsArrayBuffer(file);
             Notification.requestPermission();
                     document.querySelectorAll(".time").forEach(input=> {
                         it++;
                             checktime((new Date().getHours().toString() + ":" + new Date().getMinutes().toString()), this.value, students[it].split("[")[1].split["]"][0], classes[it], input);
                     })
 
+            reader.readAsArrayBuffer(file);
+          
                 });
     </script>
 </body>
