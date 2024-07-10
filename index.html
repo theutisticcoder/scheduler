@@ -34,9 +34,9 @@
                     var worksheet = workbook.getWorksheet(1);
                     var output = '<table border="1">';
 
-                    worksheet.eachRow({ includeEmpty: true }, function(row, rowNumber) {
+                    worksheet.eachRow({ includeEmpty: false }, function(row, rowNumber) {
                         output += '<tr>';
-                        row.eachCell({ includeEmpty: true }, function(cell, colNumber) {
+                        row.eachCell({ includeEmpty: false }, function(cell, colNumber) {
                             var cellValue = cell.value ? cell.value : '';
                             var cellStyle = '';
 
@@ -53,12 +53,9 @@
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
                         });
-                        if(cellValue.length > 0){
-                            output += '</tr>';
+                        output += '</tr>';
                         
                         output += "<input type='time' class='time'>"
-                        }
-                        
                     });
 
                     output += '</table>';
