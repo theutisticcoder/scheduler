@@ -8,7 +8,6 @@
 <body>
     <input type="file" id="upload" />
     <div id="output"></div>
-
     <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
     <script src="ics.min.js"></script>
 
@@ -49,14 +48,12 @@
                             var cellValue = cell.value ? cell.value : '';
                             var cellStyle = '';
 
-                            if (cell.font && cell.font.bold && !cellValue.includes("[")) {
-                                cellStyle = 'font-weight:bold;';
-                                classes.push(cellValue) ;
-                            }
+                            
                             if (cellValue.includes("[")) {
 
 
                                 students.push(cellValue.split("[")[1]);
+                                classes.push(cellValue.split("[")[0]);
                             }
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
@@ -70,7 +67,7 @@
                     document.getElementById('output').innerHTML = output;
                     Notification.requestPermission();
                     document.querySelectorAll(".time").forEach(input=> {
-                           cal.addEvent(classes[it] + " for " + students[it].split("]")[0], "", "", "", "", {freq: "DAILY"});
+                           cal.addEvent(classes[it] + " for " + students[it].split("]")[0], "", "", Date.getMonth() + "/" + Date.getDate() + "/" + Date.getYear(), "", {freq: "DAILY"});
                            it++;
                         })
 
