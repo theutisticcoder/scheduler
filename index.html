@@ -11,6 +11,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
     <script>
+        function checktime(time, val, name, clas){
+            if(time <= val){
+                checktime(time, val, name, clas);
+            }
+            else{
+                const not = new Notification(name + " has " + clas);
+            }
+        }
+        var it = 0;
         var classes = "";
         var students = "";
         document.getElementById('upload').addEventListener('change', function(e) {
@@ -45,14 +54,25 @@
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
                         });
                         output += '</tr>';
+                        output += "<input type='time' class='time'>"
                     });
 
                     output += '</table>';
                     document.getElementById('output').innerHTML = output;
                 });
             };
-
             reader.readAsArrayBuffer(file);
+            Notification.requestPermission();
+            if (Notification.permission === "granted") {
+                document.querySelectorAll("tr").forEach(ro=> {
+                    it++;
+                    ro.querySelectorAll("input").forEach(input=> {
+                       checktime(new Date().getTime(), input.value, classes.split(",")[it], students.split(",")[it]);
+                       
+                    })
+                })
+
+             }
         });
     </script>
 </body>
