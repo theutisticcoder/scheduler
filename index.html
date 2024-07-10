@@ -53,8 +53,12 @@
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
                         });
-                        output += '</tr>';
+                        if(cellValue.length > 0){
+                            output += '</tr>';
+                        
                         output += "<input type='time' class='time'>"
+                        }
+                        
                     });
 
                     output += '</table>';
