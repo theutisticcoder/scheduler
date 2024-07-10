@@ -13,7 +13,7 @@
     <script>
         var not;
         function checktime(time, val, name, clas){
-            if(time <= val){
+            if(time != val){
                 console.log("not ready")
                 checktime(new Date().getTime().toString(), val, name, clas);
             }
@@ -67,8 +67,8 @@
             Notification.requestPermission()
                     document.querySelectorAll("input[type='time']").forEach(input=> {
                         it++;
-                        input.onchange = ()=> {
-                            checktime(new Date().getTime().toString(), input.value, students[it].split("[")[1].split["]"][0], classes[it]);
+                        input.onchange = (e)=> {
+                            checktime(new Date().getTime().toString(), e.target.value, students[it].split("[")[1].split["]"][0], classes[it]);
                         }
                     })
 
