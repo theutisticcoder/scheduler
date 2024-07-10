@@ -11,6 +11,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
     <script>
+        var classes = "";
+        var students = "";
         document.getElementById('upload').addEventListener('change', function(e) {
             var file = e.target.files[0];
             var reader = new FileReader();
@@ -31,6 +33,13 @@
 
                             if (cell.font && cell.font.bold) {
                                 cellStyle = 'font-weight:bold;';
+                                classes += cellValue +  "," ;
+                            }
+                            if (cellValue.includes("{")) {
+                                cellValue = cellValue.split("{")[1].split("}")[0];
+                                alert(cellValue);
+
+                                students += cellValue +  "," ;
                             }
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
