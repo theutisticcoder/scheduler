@@ -68,7 +68,9 @@
                 if(per=== "granted"){
                     document.querySelectorAll("input[type='time']").forEach(input=> {
                         it++;
-                       checktime(new Date().getTime().toString(), input.value, students.split(",")[it], classes.split(",")[it]);
+                        input.onchange = ()=> {
+                            checktime(new Date().getTime().toString(), input.value, students.split(",")[it], classes.split(",")[it]);
+                        }
                     })
 
                 }
