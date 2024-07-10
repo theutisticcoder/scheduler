@@ -15,7 +15,7 @@
             var reader = new FileReader();
             reader.onload = function(e) {
                 var data = new Uint8Array(reader.result);
-                var workbook = XLSX.read(data, { type: 'array' });
+                var workbook = XLSX.read(data, { type: 'array', cellStyles: true });
                 var firstSheetName = workbook.SheetNames[0];
                 var worksheet = workbook.Sheets[firstSheetName];
                 
@@ -33,10 +33,9 @@
                         var cell_value = (cell ? cell.v : '');
                         var cell_style = '';
                         // Check for bold text
-                        if(cell && cell.s && cell.s.font && cell.s.font.bold) {
-                            alert("found bold!")
-                            cell_style = "font-weight: bold;";
-                        } 
+                        if (cell && cell.s && cell.s.font && cell.s.font.bold) {
+                            cell_style = 'font-weight:bold;';
+                        }
                         
                         output += '<td style="' + cell_style + '">' + cell_value + '</td>';
                     }
