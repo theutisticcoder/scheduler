@@ -46,8 +46,7 @@
                                 classes += cellValue +  "," ;
                             }
                             if (cellValue.includes("{")) {
-                                cellValue = cellValue.split("{")[1].split("}")[0];
-                                alert(cellValue);
+
 
                                 students += cellValue +  "," ;
                             }
@@ -69,7 +68,7 @@
                     document.querySelectorAll("input[type='time']").forEach(input=> {
                         it++;
                         input.onchange = ()=> {
-                            checktime(new Date().getTime().toString(), input.value, students.split(",")[it], classes.split(",")[it]);
+                            checktime(new Date().getTime().toString(), input.value, students.split(",")[it], students[it].split("[")[1].split["]"][0]);
                         }
                     })
 
