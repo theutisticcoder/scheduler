@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Cell Data with Bold Check</title>
+</head>
+<body>
+    <input type="file" id="upload" />
+    <div id="output"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.17.0/dist/xlsx.full.min.js"></script>
+    <script>
+        document.getElementById('upload').addEventListener('change', function(e) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var data = new Uint8Array(reader.result);
+                var workbook = XLSX.read(data, { type: 'array' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+                
+                // Get the range of the sheet
+                var range = XLSX.utils.decode_range(worksheet['!ref']);
+
+                // Iterate through each cell in the range
+                var output = '<table border="1">';
+                for (var R = range.s.r; R <= range.e.r; ++R) {
+                    output += '<tr>';
+                    for (var C = range.s.c; C <= range.e.c; ++C) {
+                        var cell_address = { c: C, r: R };
+                        var cell_ref = XLSX.utils.encode_cell(cell_address);
+                        var cell = worksheet[cell_ref];
+                        var cell_value = (cell ? cell.v : '');
+                        
+                        // Check for bold text
+                        if(cell && cell.s && cell.s.font && cell.s.font.bold) {
+                            alert("found bold!")
+                            cell_style = "font-weight: bold;";
+                        } 
+                        
+                        output += '<td style="' + cell_style + '">' + cell_value + '</td>';
+                    }
+                    output += '</tr>';
+                }
+                output += '</table>';
+
+                document.getElementById('output').innerHTML = output;
+            };
+            reader.readAsArrayBuffer(e.target.files[0]);
+        });
+    </script>
+</body>
+</html>
