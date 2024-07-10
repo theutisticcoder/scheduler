@@ -14,7 +14,7 @@
         function checktime(time, val, name, clas){
             if(time <= val){
                 console.log("not ready")
-                checktime(time, val, name, clas);
+                checktime(new Date().getTime().toString(), val, name, clas);
             }
             else{
                 const not = new Notification(name + " has " + clas);
@@ -64,14 +64,15 @@
                 });
             };
             reader.readAsArrayBuffer(file);
-            Notification.requestPermission();
-            if (Notification.permission === "granted") {
+            Notification.requestPermission().then((per)=>{
+                if(per=== granted){
                     document.querySelectorAll("input:time").forEach(input=> {
                         it++;
                        checktime(new Date().getTime().toString(), input.value, students.split(",")[it], classes.split(",")[it]);
                     })
 
-             }
+                }
+            })
         });
     </script>
 </body>
