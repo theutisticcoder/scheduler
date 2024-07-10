@@ -13,6 +13,7 @@
     <script>
         function checktime(time, val, name, clas){
             if(time <= val){
+                console.log("not ready")
                 checktime(time, val, name, clas);
             }
             else{
