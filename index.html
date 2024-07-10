@@ -21,8 +21,8 @@
             }
         }
         var it = 0;
-        var classes = "";
-        var students = "";
+        var classes = [];
+        var students = [];
         document.getElementById('upload').addEventListener('change', function(e) {
             var file = e.target.files[0];
             var reader = new FileReader();
@@ -43,12 +43,12 @@
 
                             if (cell.font && cell.font.bold) {
                                 cellStyle = 'font-weight:bold;';
-                                classes += cellValue +  "," ;
+                                classes.push(cellValue +  ",") ;
                             }
                             if (cellValue.includes("{")) {
 
 
-                                students += cellValue +  "," ;
+                                students.push(cellValue +  "," );
                             }
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
