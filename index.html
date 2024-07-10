@@ -15,7 +15,7 @@
         function checktime(time, val, name, clas, inp){
             console.log(time);
             console.log(val);
-            if(time != val || inp.value){
+            if(time != inp.value || inp.value){
                 console.log("not ready");
                 setTimeout(()=> {
                     checktime(new Date().getHours().toString() + ":" + new Date().getMinutes().toString(), val, name, clas);
