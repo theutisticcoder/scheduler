@@ -69,7 +69,7 @@
                     document.getElementById('output').innerHTML = output;
                     Notification.requestPermission();
                     document.querySelectorAll(".time").forEach(input=> {
-                        csv.push(classes[it] + " for " + students[it].split("]")[0]+ "," +new Date().toJSON().slice(0,10).replace(/-/g,'/')+ "," + "8:00am"+ "," + new Date().toJSON().slice(0,10).replace(/-/g,'/')+ "," + "4:00pm"+ "," + "FALSE"+ "," + ""+ "," + ""+ "," + "\n")
+                        csv += (classes[it] + " for " + students[it].split("]")[0]+ "," +new Date().toJSON().slice(0,10).replace(/-/g,'/')+ "," + "8:00am"+ "," + new Date().toJSON().slice(0,10).replace(/-/g,'/')+ "," + "4:00pm"+ "," + "FALSE"+ "," + ""+ "," + ""+ "," + "\n")
                            cal.addEvent(classes[it] + " for " + students[it].split("]")[0], "", "", new Date().toJSON().slice(0,10).replace(/-/g,'/'), "", {freq: "DAILY"});
                            it++;
                         })
