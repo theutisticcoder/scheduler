@@ -66,9 +66,8 @@
             reader.readAsArrayBuffer(file);
             Notification.requestPermission();
             if (Notification.permission === "granted") {
-                document.querySelectorAll("tr").forEach(ro=> {
-                    it++;
-                    ro.querySelectorAll("input").forEach(input=> {
+                    document.querySelectorAll("input:time").forEach(input=> {
+                        it++;
                        checktime(new Date().getTime().toString(), input.value, students.split(",")[it], classes.split(",")[it]);
                     })
                 })
