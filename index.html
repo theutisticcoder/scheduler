@@ -66,12 +66,12 @@
                 });
             }; 
             reader.readAsArrayBuffer(file);
-            Notification.requestPermission()
+            Notification.requestPermission();
                     document.querySelectorAll(".time").forEach(input=> {
                         it++;
-                        input.onchange = () => {
-                            checktime(new Date().getTime().toString(), e.target.value, students[it].split("[")[1].split["]"][0], classes[it]);
-                        }
+                        input.addEventListener("change", ()=> {
+                            checktime(new Date().getTime().toString(), this.value, students[it].split("[")[1].split["]"][0], classes[it]);
+                        })
                     })
 
                 });
