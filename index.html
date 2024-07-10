@@ -10,7 +10,12 @@
     <div id="output"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/ics@3.7.6/dist/index.min.js
+"></script>
+
     <script>
+        const cal = ics();
         var not;
         function checktime(time, val, name, clas){
             console.log(time);
@@ -67,14 +72,14 @@
                     document.getElementById('output').innerHTML = output;
                     Notification.requestPermission();
                     document.querySelectorAll(".time").forEach(input=> {
-                            checktime((new Date().getHours().toString() + ":" + new Date().getMinutes().toString()), this, students[it].split("]")[1], classes[it]);
-                            it++;
+                           cal.addEvent(classes[it] + " for " + students[it]);
+                           it++;
                         })
+
                 });
-             
+             cal.download("schedule");
             }; 
           
-
             reader.readAsArrayBuffer(file);
           
                 });
