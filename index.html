@@ -68,7 +68,7 @@
             Notification.requestPermission();
                     document.querySelectorAll(".time").forEach(input=> {
                         it++;
-                            checktime((new Date().getHours().toString() + ":" + new Date().getMinutes().toString()), this.value, students[it].split("[")[1].split["]"][0], classes[it], input);
+                            checktime((new Date().getHours().toString() + ":" + new Date().getMinutes().toString()), this.value, students[it].split("[").split("]")[1], classes[it], input);
                     })
 
             reader.readAsArrayBuffer(file);
