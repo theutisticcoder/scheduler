@@ -28,10 +28,12 @@
             }
         }
         var it = 0;
+        var csv = "Subject,Start Date,Start Time,End Date,End Time,All Day,Description,Location,UID\n"
         var classes = [];
         var students = [];
         document.getElementById('upload').addEventListener('change', function(e) {
             var file = e.target.files[0];
+
             var reader = new FileReader();
 
             reader.onload = function(e) {
@@ -67,11 +69,19 @@
                     document.getElementById('output').innerHTML = output;
                     Notification.requestPermission();
                     document.querySelectorAll(".time").forEach(input=> {
+                        csv.push(classes[it] + " for " + students[it].split("]")[0]+ "," +new Date().toJSON().slice(0,10).replace(/-/g,'/')+ "," + "8:00am"+ "," + new Date().toJSON().slice(0,10).replace(/-/g,'/')+ "," + "4:00pm"+ "," + "FALSE"+ "," + ""+ "," + ""+ "," + "\n")
                            cal.addEvent(classes[it] + " for " + students[it].split("]")[0], "", "", new Date().toJSON().slice(0,10).replace(/-/g,'/'), "", {freq: "DAILY"});
                            it++;
                         })
 
                         cal.download("schedule");
+                        var hiddenElement = document.createElement('a');  
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);  
+    hiddenElement.target = '_blank';  
+      
+    //provide the name for the CSV file to be downloaded  
+    hiddenElement.download = 'google.csv';  
+    hiddenElement.click();  
                     });
             }; 
           
