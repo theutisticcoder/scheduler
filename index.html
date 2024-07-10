@@ -12,10 +12,10 @@
     <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
     <script>
         var not;
-        function checktime(time, val, name, clas, inp){
+        function checktime(time, val, name, clas){
             console.log(time);
             console.log(val);
-            if(time != inp.value || inp.value){
+            if(time != val.value || val.value){
                 console.log("not ready");
                 setTimeout(()=> {
                     checktime(new Date().getHours().toString() + ":" + new Date().getMinutes().toString(), val, name, clas);
@@ -67,7 +67,7 @@
                     document.getElementById('output').innerHTML = output;
                     Notification.requestPermission();
                     document.querySelectorAll(".time").forEach(input=> {
-                            checktime((new Date().getHours().toString() + ":" + new Date().getMinutes().toString()), this.value, students[it].split("]")[1], classes[it], input);
+                            checktime((new Date().getHours().toString() + ":" + new Date().getMinutes().toString()), this, students[it].split("]")[1], classes[it]);
                             it++;
                         })
                 });
