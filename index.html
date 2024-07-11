@@ -70,7 +70,7 @@
                         students[it] =  students[it].split(",");
                         var classmates = "";
                         students[it].forEach(stud => {
-                            classmates += stud + " ";
+                            classmates += stud[1] + " ";
                         })
                         csv += (classes[it] + " for " + students[it].split("]")[0]+ "," +new Date().toJSON().slice(0,10).replace(/-/g,'/')+ "," + "8:00am"+ "," + new Date().toJSON().slice(0,10).replace(/-/g,'/')+ "," + "4:00pm"+ "," + "FALSE"+ "," + ""+ "," + ""+ "," + "\n")
                            cal.addEvent(classes[it] + " for " + students[it], "", "", new Date().toJSON().slice(0,10).replace(/-/g,'/'), "", {freq: "DAILY"});
