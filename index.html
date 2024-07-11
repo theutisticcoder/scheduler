@@ -49,14 +49,13 @@
                         row.eachCell({ includeEmpty: false }, function(cell, colNumber) {
                             var cellValue = cell.value ? cell.value : '';
                             var cellStyle = '';
-                            console.log(cellValue);
+                            console.log(cellValue.richText[0]);
                             
-                            if (cellValue.includes("[")) {
 
 
                                 students.push(cellValue.split("[")[1]);
                                 classes.push(cellValue.split("[")[0]);
-                            }
+                            
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
                         });
