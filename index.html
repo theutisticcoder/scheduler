@@ -49,12 +49,11 @@
                         row.eachCell({ includeEmpty: false }, function(cell, colNumber) {
                             var cellValue = cell.value ? cell.value : '';
                             var cellStyle = '';
-                            console.log(cellValue.richText[0]);
                             
 
 
-                                students.push(cellValue.split("[")[1]);
-                                classes.push(cellValue.split("[")[0]);
+                                students.push(cellValue.richText[1].text);
+                                classes.push(cellValue.richText[0].text);
                             
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
