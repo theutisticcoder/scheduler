@@ -64,7 +64,7 @@
                         
                         output += "<input type='time' class='time'>"
                     });
-
+                        document.getElementById("output").innerHTML = output;
                     output += '</table>';
                     Notification.requestPermission();
                     document.querySelectorAll(".time").forEach(input=> {
