@@ -71,7 +71,7 @@
                         students[it] =  students[it][1].split("]")[0];
                         students[it] =  students[it].replace(",", " ");
                        
-                        csv += (classes[it] + " for " + students[it] + "," + "6/20/" + (Date.getUTCFullYear() + 1) + "," + "8:00am"+ "," + new Date().toJSON().slice(0,10).replace(/-/g,'/')+ "," + "4:00pm"+ "," + "FALSE"+ "," + ""+ "," + ""+ "," + "\n").toString();
+                        csv += (classes[it] + " for " + students[it] + "," + "6/20/" + ( new Date().getFullYear() + 1) + "," + "8:00am"+ "," + new Date().toJSON().slice(0,10).replace(/-/g,'/')+ "," + "4:00pm"+ "," + "FALSE"+ "," + ""+ "," + ""+ "," + "\n").toString();
                            cal.addEvent(classes[it] + " for " + students[it], "", "", new Date().toJSON().slice(0,10).replace(/-/g,'/'), "", {freq: "DAILY"});
                            it++;
                         })
