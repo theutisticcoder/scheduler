@@ -71,12 +71,12 @@
                         students[it] =  students[it][1].split("]")[0];
                         students[it] =  students[it].replace(",", " ");
                        
-                           cal.addEvent(classes[it] + " for " + students[it], "", "",  ( new Date().getFullYear() + 1) + "-" + new Date().getMonth() + "-" + new Date().getDate() + "T08:00:00", ( new Date().getFullYear() + 1) + "-6-20" + "T16:00:00", {freq: "DAILY"});
+                           cal.addEvent(classes[it] + " for " + students[it], "", "", new Date().toJSON().slice(0,10).replace(/-/g,'/'), "6/20/" + ( new Date().getFullYear() + 1), {freq: "DAILY"});
                            it++;
                         })
 console.log(csv);
                         cal.download("schedule");
-            
+                      
   
                     });
             }; 
