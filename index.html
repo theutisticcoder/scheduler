@@ -72,13 +72,13 @@
                         students[it] =  students[it].replace(",", " ");
                        
                         csv += (classes[it] + " for " + students[it] + "," + new Date().toJSON().slice(0,10).replace(/-/g,'/') + "," + "8:00am"+ "," + "6/20/" + ( new Date().getFullYear() + 1)+ "," + "4:00pm"+ "," + "FALSE"+ "," + ""+ "," + ""+ "," + "\n").toString();
-                           cal.addEvent(classes[it] + " for " + students[it], "", "", new Date().toJSON().slice(0,10).replace(/-/g,'/'), "", {freq: "DAILY"});
+                           cal.addEvent(classes[it] + " for " + students[it], "", "", new Date().toJSON().slice(0,10).replace(/-/g,'/'), "");
                            it++;
                         })
 console.log(csv);
                         cal.download("schedule");
                         var hiddenElement = document.createElement('a');  
-    hiddenElement.href = 'data:text/calendar;charset=utf8,' + encodeURI(csv);  
+    window.open('data:text/calendar;charset=utf8,' + escape(csv));  
     hiddenElement.target = '_blank';  
       
     //provide the name for the CSV file to be downloaded  
