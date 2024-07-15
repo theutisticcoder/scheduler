@@ -69,11 +69,9 @@
                     Notification.requestPermission();
                     document.querySelectorAll(".time").forEach(input=> {
                         students[it] =  students[it].split("]")[0];
-                        students[it] =  students[it].split(",");
-                        students[it].forEach(stud => {
-                            classmates += stud[1] + " ";
-                        })
-                        csv += (classes[it] + " for " + classmates + "," +new Date().toJSON().slice(0,10).replace(/-/g,'/')+ "," + "8:00am"+ "," + new Date().toJSON().slice(0,10).replace(/-/g,'/')+ "," + "4:00pm"+ "," + "FALSE"+ "," + ""+ "," + ""+ "," + "\n")
+                        students[it] =  students[it].replace(",", " ");
+                       
+                        csv += (classes[it] + " for " + students[it] + "," + new Date().toJSON().slice(0,10).replace(/-/g,'/')+ "," + "8:00am"+ "," + new Date().toJSON().slice(0,10).replace(/-/g,'/')+ "," + "4:00pm"+ "," + "FALSE"+ "," + ""+ "," + ""+ "," + "\n").toString();
                            cal.addEvent(classes[it] + " for " + students[it], "", "", new Date().toJSON().slice(0,10).replace(/-/g,'/'), "", {freq: "DAILY"});
                            it++;
                         })
