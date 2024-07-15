@@ -78,7 +78,7 @@
 console.log(csv);
                         cal.download("schedule");
                         var hiddenElement = document.createElement('a');  
-    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);  
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + escape(csv);  
     hiddenElement.target = '_blank';  
       
     //provide the name for the CSV file to be downloaded  
