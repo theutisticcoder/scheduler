@@ -54,9 +54,8 @@
                             
 
 
-                                students.push(cellValue.richText[0].text.split("["));
-                                classes.push(cellValue.richText[0].text);
-                            
+                                students.push(cellValue.split("[")[1].split("]")[0]);
+                                classes.push(cellValue.split("[")[0])
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
                         });
