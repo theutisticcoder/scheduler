@@ -71,7 +71,7 @@
                         students[it] =  students[it][1].split("]")[0];
                         students[it] =  students[it].replace(",", " ");
                        
-                           cal.addEvent(classes[it] + " for " + students[it], "", "", new Date().toJSON().slice(0,10).replace(/-/g,'/'), new Date().toJSON().slice(0,10).replace(/-/g,'/'), {freq: "WEEKLY", byday: days[new Date().getDay()]});
+                           cal.addEvent(classes[it] + " for " + students[it], "", "", new Date().toJSON().slice(0,10).replace(/-/g,'/'), new Date().toJSON().slice(0,10).replace(/-/g,'/'), {freq: "WEEKLY", byday: [days[new Date().getDay()]]});
                            it++;
                         })
 console.log(csv);
