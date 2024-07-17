@@ -31,9 +31,12 @@
             }
         }
         var it = 0;
+        var rows = -1;
+        var columns = -1;
         var csv = "Subject,Start Date,Start Time,End Date,End Time,All Day,Description,Location,UID\n"
         var classes = [];
-        var students = [];
+        var times = [["8:45", "9:15"], ["9:15", "9:55"], ["10:00", "10:40"], ["10:45", "11:25"], ["11:30", "12:10"], ["12:15", "12:40"], ["12:45", "13:25"], ["13:30", "14:10"], ["14:10", "14:40"], ["14:40", "15:40"]]
+        var periods = [];
         document.getElementById('upload').addEventListener('change', function(e) {
             var file = e.target.files[0];
 
@@ -49,9 +52,18 @@
 
                     worksheet.eachRow({ includeEmpty: false }, function(row, rowNumber) {
                         output += '<tr>';
+                            columns = 0;
+                            rows++;
                         row.eachCell({ includeEmpty: false }, function(cell, colNumber) {
+                            if(rows === 0 && columns === 0){
+                                students = cell.value;
+                            }
+                            else if(rows > 1 && columns > 1){
+                            columns++;
                             var cellValue = cell.value ? cell.value : '';
                             var cellStyle = '';
+                            var time = times[rows];
+                            var date = days[columns];
                             
 
 
@@ -59,17 +71,18 @@
                                 classes.push(cellValue.split("[")[0])
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
+                            output += "<input type='time' hidden class='time'>"
+                            }
                         });
                         output += '</tr>';
                         
-                        output += "<input type='time' class='time'>"
                     });
                         document.getElementById("output").innerHTML = output;
                     output += '</table>';
                     Notification.requestPermission();
                     document.querySelectorAll(".time").forEach(input=> {
                        
-                           cal.addEvent(classes[it] + " for " + students[it], "", "", new Date().toJSON().slice(0,10).replace(/-/g,'/'), new Date().toJSON().slice(0,10).replace(/-/g,'/'), {freq: "WEEKLY", byday: [days[new Date().getDay()]]});
+                           cal.addEvent(classes[it] + " for " + students[it], "", "", new Date().toJSON().slice(0,10).replace(/-/g,'/') + " " + time[0], new Date().toJSON().slice(0,10).replace(/-/g,'/') + " " + time[1], {freq: "WEEKLY", byday: [date]});
                            it++;
                         })
 console.log(csv);
