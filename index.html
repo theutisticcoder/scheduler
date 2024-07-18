@@ -13,7 +13,7 @@
 
     <script>
                                 var classmates = "";
-
+var student = "";
         var cal = ics();
         var not;
         const days = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
@@ -55,18 +55,20 @@
                             columns = 0;
                             rows++;
                         row.eachCell({ includeEmpty: false }, function(cell, colNumber) {
-                             if(rows > 1 && columns > 1){
                             columns++;
+                            if(rows === 0 && columns === 0){
+                                student = cell.value;
+                            }
+                             if(rows > 1 && columns > 1){
                             var cellValue = cell.value ? cell.value : '';
                             var cellStyle = '';
                             var time = times[rows];
                             var date = days[columns];
                             
+                            
 
 
-                                students.push(cellValue.split("[")[1].split("]")[0]);
-                                classes.push(cellValue.split("[")[0])
-                                cal.addEvent(classes[it] + " for " + students[it], "", "", new Date().toJSON().slice(0,10).replace(/-/g,'/') + " " + time[0], new Date().toJSON().slice(0,10).replace(/-/g,'/') + " " + time[1], {freq: "WEEKLY", byday: [date]});
+                                cal.addEvent(cellValue + " for " + student, "", "", new Date().toJSON().slice(0,10).replace(/-/g,'/') + " " + time[0], new Date().toJSON().slice(0,10).replace(/-/g,'/') + " " + time[1], {freq: "WEEKLY", byday: [date]});
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
                             output += "<input type='time' hidden class='time'>"
@@ -79,7 +81,6 @@
                     output += '</table>';
                     Notification.requestPermission();
                        
-                           it++;
                         cal.download("schedule");
                       
   
