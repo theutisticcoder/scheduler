@@ -63,12 +63,13 @@ var student = "student";
                             var cellValue = cell.value ? cell.value : '';
                             var cellStyle = '';
                             var time = times[rows];
-                            var date = days[columns];
+                            var date =new Date();
+                            date.setDate(d.getDate() + (7-d.getDay())%7+columns+1)
                             
                             
 
 
-                                cal.addEvent(cellValue + " for " + student, "", "", new Date().toJSON().slice(0,10).replace(/-/g,'/') + " " + time[0], new Date().toJSON().slice(0,10).replace(/-/g,'/') + " " + time[1], {freq: "WEEKLY", byday: [date]});
+                                cal.addEvent(cellValue + " for " + student, "", "", date + " " + time[0], date + " " + time[1], {freq: "WEEKLY", byday: [days[columns]]});
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
                             output += "<input type='time' hidden class='time'>"
