@@ -66,7 +66,7 @@ var student = "student";
                             var date =new Date();
                             date.setDate(date.getDate() + (7-date.getDay())%7+columns)
                             
-                            console.log(date);
+                            console.log(date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear()  + " " + time[0]);
 
 
                                 cal.addEvent(cellValue + " for " + student, "", "", date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear()  + " " + time[0], date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear()  + " " + time[1], {freq: "WEEKLY", byday: [days[columns]]});
