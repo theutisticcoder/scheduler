@@ -32,7 +32,7 @@ var student = "student";
         }
         var it = 0;
         var rows = -2;
-        var columns = -2;
+        var columns = -1;
         var csv = "Subject,Start Date,Start Time,End Date,End Time,All Day,Description,Location,UID\n"
         var classes = [];
         var times = [["8:45", "9:15"], ["9:15", "9:55"], ["10:00", "10:40"], ["10:45", "11:25"], ["11:30", "12:10"], ["12:15", "12:40"], ["12:45", "13:25"], ["13:30", "14:10"], ["14:10", "14:40"], ["14:40", "15:40"]]
@@ -52,14 +52,14 @@ var student = "student";
 
                     worksheet.eachRow({ includeEmpty: false }, function(row, rowNumber) {
                         output += '<tr>';
-                            columns = 0;
+                            columns = -1;
                             rows++;
                         row.eachCell({ includeEmpty: false }, function(cell, colNumber) {
                             columns++;
                             if(rows === -1 && columns === -1){
                                 student = cell.value;
                             }
-                             if(rows >=0 && columns >=1){
+                             if(rows >=0 && columns >=0){
                             var cellValue = cell.value ? cell.value : '';
                             var cellStyle = '';
                             var time = times[rows];
