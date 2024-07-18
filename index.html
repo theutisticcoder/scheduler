@@ -69,7 +69,7 @@ var student = "student";
                             console.log(date);
 
 
-                                cal.addEvent(cellValue + " for " + student, "", "", date + " " + time[0], date + " " + time[1], {freq: "WEEKLY", byday: [days[columns]]});
+                                cal.addEvent(cellValue + " for " + student, "", "", date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear()  + " " + time[0], date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear()  + " " + time[1], {freq: "WEEKLY", byday: [days[columns]]});
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
                             output += "<input type='time' hidden class='time'>"
