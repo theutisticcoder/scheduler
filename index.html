@@ -66,7 +66,7 @@ var student = "student";
                             var date =new Date();
                             date.setDate(date.getDate() + (7-date.getDay())%7+columns+1)
                             
-                            
+                            console.log(date);
 
 
                                 cal.addEvent(cellValue + " for " + student, "", "", date + " " + time[0], date + " " + time[1], {freq: "WEEKLY", byday: [days[columns]]});
