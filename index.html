@@ -56,7 +56,7 @@ var student = "student";
                             rows++;
                         row.eachCell({ includeEmpty: false }, function(cell, colNumber) {
                             columns++;
-                            if(rows === 0 && columns === 0){
+                            if(rows === -1 && columns === 0){
                                 student = cell.value;
                             }
                              if(rows >=0 && columns >=1){
