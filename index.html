@@ -55,7 +55,7 @@
                             columns = 0;
                             rows++;
                         row.eachCell({ includeEmpty: false }, function(cell, colNumber) {
-                            else if(rows > 1 && columns > 1){
+                             if(rows > 1 && columns > 1){
                             columns++;
                             var cellValue = cell.value ? cell.value : '';
                             var cellStyle = '';
