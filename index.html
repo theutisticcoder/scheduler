@@ -69,7 +69,7 @@ var student = "student";
                             console.log(date.getMonth() + "-" + date.getDay() + "-" + date.getFullYear()  + " " + time[0]);
 
 
-                                cal.addEvent(cellValue, "", "", date.getMonth() + "-" + date.getDay() + "-" + date.getFullYear()  + " " + time[0], date.getMonth() + "-" + date.getDay() + "-" + date.getFullYear()  + " " + time[1], {freq: "WEEKLY", byday: [days[columns]]});
+                                cal.addEvent(student + "-" + cellValue, "", "", date.getMonth() + "-" + date.getDay() + "-" + date.getFullYear()  + " " + time[0], date.getMonth() + "-" + date.getDay() + "-" + date.getFullYear()  + " " + time[1], {freq: "WEEKLY", byday: [days[columns]]});
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
                             output += "<input type='time' hidden class='time'>"
@@ -78,8 +78,9 @@ var student = "student";
                         output += '</tr>';
                         
                     });
-                        document.getElementById("output").innerHTML = output;
                     output += '</table>';
+                    document.getElementById("output").innerHTML = output;
+                    output = "";
                     Notification.requestPermission();
                        
                         cal.download(student);
