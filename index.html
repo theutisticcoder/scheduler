@@ -71,7 +71,7 @@ var student = "student";
 
 
                                 cal.addEvent(student + "-" + cellValue, "", "", date.getMonth() + "-" + date.getDay() + "-" + date.getFullYear()  + " " + time[0], date.getMonth() + "-" + date.getDay() + "-" + date.getFullYear()  + " " + time[1], {freq: "WEEKLY", byday: [days[columns]]});
-                                ios.addEvent(student + "-" + cellValue, "", "", date.getMonth() + "-" + date.getDay() + "-" + date.getFullYear()  + " " + time[0], date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear()  + " " + time[1], {freq: "WEEKLY", byday: [days[columns]], until: "6/20/" + (new Date.getFullYear() + 1)});
+                                ios.addEvent(student + "-" + cellValue, "", "", date.getMonth() + "-" + date.getDay() + "-" + date.getFullYear()  + " " + time[0], date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear()  + " " + time[1], {freq: "WEEKLY", byday: [days[columns]], until: "6/20/" + (new Date().getFullYear() + 1)});
 
                             output += '<td style="' + cellStyle + '">' + cellValue + '</td>';
                             output += "<input type='time' hidden class='time'>"
